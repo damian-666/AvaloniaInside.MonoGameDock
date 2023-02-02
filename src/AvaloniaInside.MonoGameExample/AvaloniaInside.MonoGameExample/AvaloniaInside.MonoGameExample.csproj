@@ -17,6 +17,8 @@
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
         <PackageReference Include="XamlNameReferenceGenerator" Version="1.5.1" />
+        <PackageReference Include="Dock.Avalonia" Version="11.0.999-build20230104-01" />
+        <PackageReference Include="Dock.Model.Avalonia" Version="11.0.999-build20230104-01" />
     </ItemGroup>
 
     <ItemGroup>
