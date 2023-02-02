@@ -23,6 +23,8 @@ public class MainViewModel : ViewModelBase
 
 	public AutoPongGame Game2 { get; set; } 
 
+	public TestGame1? Game3 { get; set; }
+
 	public Avalonia.Media.Color DiffuseColor
 	{
 		get => ToColor(CurrentGame.DiffuseColor);

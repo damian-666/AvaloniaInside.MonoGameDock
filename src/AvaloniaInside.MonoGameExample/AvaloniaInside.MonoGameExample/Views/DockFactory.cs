@@ -5,6 +5,7 @@ using Dock.Avalonia.Controls;
 using Dock.Model.Avalonia;
 using Dock.Model.Avalonia.Controls;
 using Dock.Model.Core;
+using ReactiveUI;
 
 namespace AvaloniaInside.MonoGameExample.Views;
 
@@ -17,7 +18,7 @@ public class DockFactory : Factory
         _mainViewModel = mainViewModel;
     }
 
-    public DocumentDock DocumentsPane { get; set;  }
+    public DocumentDock? DocumentsPane { get; set;  }
 
     public override void InitLayout(IDockable layout)
     {
@@ -25,15 +26,13 @@ public class DockFactory : Factory
         {
             ["Document1"] = () => _mainViewModel.Game1,
             ["Document2"] = () => _mainViewModel.Game2,
+            ["Document3"] = () => _mainViewModel.Game3,
             ["Properties"] = () => _mainViewModel,
         };
 
         DockableLocator = new Dictionary<string, Func<IDockable?>>
         {
-            //["Root"] = () => _rootDock,
-            //["Files"] = () => _documentDock,
-            //["Find"] = () => _findTool,
-            //["Replace"] = () => _replaceTool
+            ["DocumentsPane"] = () => DocumentsPane,
         };
 
         HostWindowLocator = new Dictionary<string, Func<IHostWindow?>>
@@ -47,9 +46,39 @@ public class DockFactory : Factory
             if (documentPane is DocumentDock documentDock)
             {
                 DocumentsPane = documentDock;
+                
+                DocumentsPane.CreateDocument = ReactiveCommand.Create(() => CreateDocumentFromTemplate());
             }
         }
 
         base.InitLayout(layout);
+    }
+    
+    private object? CreateDocumentFromTemplate()
+    {
+        if (DocumentsPane is null)
+        {
+            return null;
+        }
+        if (DocumentsPane.DocumentTemplate is null || !DocumentsPane.CanCreateDocument)
+        {
+            return null;
+        }
+
+        _mainViewModel.Game3 = new TestGame1();
+        _mainViewModel.CurrentGame = _mainViewModel.Game3;
+
+        var document = new Document
+        {
+            Id = "Document3",
+            Title = "Game3",
+            Content = DocumentsPane.DocumentTemplate.Content
+        };
+
+        DocumentsPane.Factory?.AddDockable(DocumentsPane, document);
+        DocumentsPane.Factory?.SetActiveDockable(document);
+        DocumentsPane.Factory?.SetFocusedDockable(DocumentsPane, document);
+
+        return document;
     }
 }
