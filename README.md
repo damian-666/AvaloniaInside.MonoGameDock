@@ -8,7 +8,7 @@ set  AvaloniaInside.MonoGameExample.Desktop as default project , this one works 
 
 tested on windows, bild and tested on M1 apple osx.
 
-any contributiongs MG specify like shaders are welcome.
+any contributionx MG specific like shaders are welcome.
 
 Sponsor wieslawsoltes and or Avalonia I can't promise  to maintain this vault 
 
