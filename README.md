@@ -2,11 +2,9 @@
 
 Integration of MonoGame for Avalonia  (DOCK BRANCH + Avalonia.Inside + working samples)  thanks to  wieslawsoltes/AvaloniaInside.MonoGame
 
-## Install:  clone this fork or the  wieslawsoltes/AvaloniaInside.MonoGame    ( Docking branch) .. I will keep it  in sync wiht upstream wieslawsoltes/AvaloniaInside.MonoGame and maybe try some expirements in here and mabye add some  2d shader  tests , scripting,  such.
+## Install:  clone this fork or the  wieslawsoltes/AvaloniaInside.MonoGame    ( Docking branch) .. I will keep it  in sync with upstream wieslawsoltes/AvaloniaInside.MonoGame and maybe try some expirements in here and mabye add some  2d shader  tests , scripting,  such.
 
-
-
-set as default project , this one works the others do not run or crash  , there is a wasm version but its doensnt seem to work yet.. Avalonia is getting an update soon.  AvaloniaInside.MonoGameExample.Desktop   ( build and run debug or release) its a WIP  but you can add inspectors , grips , editing stuff from Core2D, or other avalonia repos and samples
+set  AvaloniaInside.MonoGameExample.Desktop as default project , this one works the others do not run or crash  , there is a wasm version but its doensnt seem to work yet.. Avalonia is getting an update soon.    ( build and run debug or release) its a WIP  but you can add inspectors , grips , editing stuff from Core2D, or other avalonia repos and samples
 
 tested on windows, bild and tested on M1 apple osx.
 
