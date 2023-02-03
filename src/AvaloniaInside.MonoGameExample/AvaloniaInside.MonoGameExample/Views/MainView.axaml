@@ -63,7 +63,18 @@
 
           <ToolDock x:Name="LeftPane" Id="LeftPane" Proportion="0.25" Alignment="Left">
             <Tool x:Name="SolutionExplorer" Id="SolutionExplorer" Title="Solution Explorer" x:DataType="Tool">
-              <TextBlock Text="{Binding Title}"/>
+
+				<!--bind this to your level-->
+				<TreeView   >
+			
+					<TreeViewItem Header="ent1">
+						<Label>ball</Label>					
+					</TreeViewItem>
+					<TreeViewItem Header=" ent2"  >
+						<Label>ball</Label>
+					</TreeViewItem>
+
+				</TreeView>
             </Tool>
           </ToolDock>
 
@@ -98,10 +109,10 @@
                   <!--<monoGame:MonoGameControl Game="{Binding CurrentGame}" />-->
                   <monoGame:MonoGameControl Game="{Binding  Context}" />
                 </Document>
-                <Document x:Name="Document2" Id="Document2" Title="AutoPongGame" x:DataType="Document">
-                  <!--<TextBlock Text="{Binding Title}"/>-->
+                <!--<Document x:Name="Document2" Id="Document2" Title="AutoPongGame" x:DataType="Document">
+           
                   <monoGame:MonoGameControl Game="{Binding  Context}" />
-                </Document>
+                </Document>-->
               </DocumentDock>
 
               <ProportionalDockSplitter x:Name="RightSplitter" Id="RightSplitter" />

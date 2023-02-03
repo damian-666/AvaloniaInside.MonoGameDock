@@ -12,6 +12,7 @@
         <PackageLicenseUrl>https://github.com/AvaloniaInside/AvaloniaInside.MonoGame/blob/main/LICENSE</PackageLicenseUrl>
         <RepositoryUrl>https://github.com/AvaloniaInside/AvaloniaInside.MonoGame/</RepositoryUrl>
         <PackageTags>monogame, avalonia, avaloniaui, game, gameengine, xna</PackageTags>
+        <Platforms>AnyCPU;ARM64</Platforms>
     </PropertyGroup>
 
     <ItemGroup>
