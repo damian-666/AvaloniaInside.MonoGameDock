@@ -3,3 +3,7 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
+/src/.vs/ProjectEvaluation
+/src/.vs/AvaloniaInside.MonoGame/FileContentIndex/06bbf8b4-00d5-4d54-abbd-cba80288f698.vsidx
+*.lock
+*.v2
