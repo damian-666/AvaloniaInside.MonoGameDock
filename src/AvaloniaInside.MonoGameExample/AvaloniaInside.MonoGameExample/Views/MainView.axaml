@@ -62,17 +62,15 @@
           <!-- Left Pane -->
 
           <ToolDock x:Name="LeftPane" Id="LeftPane" Proportion="0.25" Alignment="Left">
-            <Tool x:Name="SolutionExplorer" Id="SolutionExplorer" Title="Solution Explorer"  x:DataType="Tool">
+            <Tool x:Name="SolutionExplorer" Id="SolutionExplorer" Title="Solution Explorer" x:DataType="Tool">
+				<TreeView>
 
-				<!--bind this to your level-->
-				<TreeView     >
-			      
-					<TreeViewItem Header="ent1">
-						Mono
+
+					<TreeViewItem Header="Ent1" >
+						ball    
 					</TreeViewItem>
-					<TreeViewItem
-						Header=" ent2" >
-					Ball
+					<TreeViewItem Header=" Ent2">
+						Mono
 					</TreeViewItem>
 
 				</TreeView>
