@@ -4,7 +4,7 @@
         <TargetFramework>net7.0</TargetFramework>
         <Nullable>enable</Nullable>
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
-        <Platforms>AnyCPU;ARM64</Platforms>
+        <Platforms>AnyCPU;ARM64;x64</Platforms>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -12,12 +12,25 @@
     </PropertyGroup>
 
     <ItemGroup>
+
         <PackageReference Include="Avalonia.Desktop" Version="$(AvaloniaVersion)" />
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
+        <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
+        <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\AvaloniaInside.MonoGame\AvaloniaInside.MonoGame.csproj" />
         <ProjectReference Include="..\AvaloniaInside.MonoGameExample\AvaloniaInside.MonoGameExample.csproj" />
+        <ProjectReference Include="..\MGCore\MGCore.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Content\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <MonoGameContentReference Include="..\MGCore\Content\Content.mgcb" Link="Content\Content.mgcb" />
     </ItemGroup>
 </Project>

@@ -8,3 +8,4 @@ riderModule.iml
 *.lock
 *.v2
 *.vsidx
+/src/.vs/AvaloniaInside.MonoGame/config/applicationhost.config

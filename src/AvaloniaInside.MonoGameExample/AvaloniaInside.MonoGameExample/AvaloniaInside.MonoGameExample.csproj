@@ -3,6 +3,7 @@
         <TargetFramework>net7.0</TargetFramework>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
+        <Platforms>AnyCPU;x64</Platforms>
     </PropertyGroup>
 
     <ItemGroup>
@@ -24,11 +25,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\AvaloniaInside.MonoGame\AvaloniaInside.MonoGame.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Update="Content\**">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
+      <ProjectReference Include="..\MGCore\MGCore.csproj" />
     </ItemGroup>
 </Project>
