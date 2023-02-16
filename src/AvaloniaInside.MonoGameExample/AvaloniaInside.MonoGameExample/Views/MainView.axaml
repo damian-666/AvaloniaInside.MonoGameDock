@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:AvaloniaInside.MonoGameExample.Views"
              xmlns:viewModels="clr-namespace:AvaloniaInside.MonoGameExample.ViewModels"
              xmlns:monoGame="clr-namespace:AvaloniaInside.MonoGame;assembly=AvaloniaInside.MonoGame"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
@@ -14,6 +15,7 @@
 		<viewModels:MainViewModel />
 	</Design.DataContext>
 
+  <!--
 	<Grid ColumnDefinitions="*, 200">
 		<monoGame:MonoGameControl Game="{Binding CurrentGame}" />
 		<StackPanel Grid.Column="1" Orientation="Vertical">
@@ -30,4 +32,124 @@
 			<ColorPicker Color="{Binding EmissiveColor}" ColorModel="Rgba" IsAlphaEnabled="False"></ColorPicker>
 		</StackPanel>
 	</Grid>
+	-->
+
+  <Grid  RowDefinitions="Auto,*">
+
+    <Menu Grid.Row="0">
+      <MenuItem Header="_File">
+        <MenuItem x:Name="FileOpenLayout" Header="_Open layout..." Click="FileOpenLayout_OnClick" />
+        <Separator/>
+        <MenuItem x:Name="FileSaveLayout" Header="_Save layout..." Click="FileSaveLayout_OnClick" />
+        <Separator/>
+        <MenuItem x:Name="FileCloseLayout" Header="_Close layout" Click="FileCloseLayout_OnClick" />
+      </MenuItem>
+    </Menu>
+
+    <DockControl x:Name="Dock" 
+                 InitializeLayout="True" 
+                 InitializeFactory="True"
+                 Factory="{Binding Factory}"
+                 Grid.Row="1" >
+      <!--<DockControl.Factory>
+        <Factory />
+      </DockControl.Factory>-->
+
+      <RootDock x:Name="Root" Id="Root" IsCollapsable="False" DefaultDockable="{Binding #MainLayout}">
+
+        <ProportionalDock x:Name="MainLayout" Id="MainLayout" Orientation="Horizontal">
+
+          <!-- Left Pane -->
+
+          <ToolDock x:Name="LeftPane" Id="LeftPane" Proportion="0.25" Alignment="Left">
+            <Tool x:Name="SolutionExplorer" Id="SolutionExplorer" Title="Solution Explorer" x:DataType="Tool">
+              <TextBlock Text="{Binding Title}"/>
+            </Tool>
+          </ToolDock>
+
+          <ProportionalDockSplitter x:Name="LeftSplitter" Id="LeftSplitter" />
+
+          <!-- Top Pane -->
+
+          <ProportionalDock x:Name="TopPane" Id="TopPane" Orientation="Vertical">
+
+            <!-- Right Pane -->
+
+            <ProportionalDock x:Name="RightPane" Id="RightPane" Orientation="Horizontal">
+
+              <!-- Documents Pane -->
+
+              <DocumentDock x:Name="DocumentsPane" Id="DocumentsPane" CanCreateDocument="True" ActiveDockable="Document1">
+                <DocumentDock.DocumentTemplate>
+                  <DocumentTemplate>
+                    <!--
+                    <StackPanel x:DataType="Document">
+                      <TextBlock Text="Title"/>
+                      <TextBox Text="{Binding Title}"/>
+                      <TextBlock Text="Context"/>
+                      <TextBox Text="{Binding Context}"/>
+                    </StackPanel>
+                    -->
+                    <monoGame:MonoGameControl Game="{Binding  Context}"/>
+                  </DocumentTemplate>
+                </DocumentDock.DocumentTemplate>
+                <Document x:Name="Document1" Id="Document1" Title="TestGame1" x:DataType="Document">
+                  <!--<TextBlock Text="{Binding Title}"/>-->
+                  <!--<monoGame:MonoGameControl Game="{Binding CurrentGame}" />-->
+                  <monoGame:MonoGameControl Game="{Binding  Context}" />
+                </Document>
+                <Document x:Name="Document2" Id="Document2" Title="AutoPongGame" x:DataType="Document">
+                  <!--<TextBlock Text="{Binding Title}"/>-->
+                  <monoGame:MonoGameControl Game="{Binding  Context}" />
+                </Document>
+              </DocumentDock>
+
+              <ProportionalDockSplitter x:Name="RightSplitter" Id="RightSplitter" />
+
+              <!-- Properties Pane -->
+              <ToolDock x:Name="PropertiesPane" Id="PropertiesPane" Proportion="0.3" Alignment="Right">
+                <Tool x:Name="Properties" Id="Properties" Title="Properties" x:DataType="Tool">
+                  <!--<TextBlock Text="{Binding Title}"/>-->
+                  <StackPanel DataContext="{Binding Context}" Orientation="Vertical">
+                    <TextBlock Text="Diffuse Color"></TextBlock>
+                    <ColorPicker Color="{Binding DiffuseColor}" ColorModel="Rgba" IsAlphaEnabled="False"></ColorPicker>
+
+                    <TextBlock Text="Specular Color"></TextBlock>
+                    <ColorPicker Color="{Binding SpecularColor}" ColorModel="Rgba" IsAlphaEnabled="False"></ColorPicker>
+
+                    <TextBlock Text="Ambient Light Color"></TextBlock>
+                    <ColorPicker Color="{Binding AmbientLightColor}" ColorModel="Rgba" IsAlphaEnabled="False"></ColorPicker>
+
+                    <TextBlock Text="Emissive Color"></TextBlock>
+                    <ColorPicker Color="{Binding EmissiveColor}" ColorModel="Rgba" IsAlphaEnabled="False"></ColorPicker>
+                  </StackPanel>
+                </Tool>
+              </ToolDock>
+
+            </ProportionalDock>
+
+            <ProportionalDockSplitter x:Name="BottomSplitter" Id="BottomSplitter" />
+
+            <!-- Bottom Pane -->
+
+            <ToolDock x:Name="BottomPane" Id="BottomPane" Proportion="0.3" Alignment="Bottom" ActiveDockable="Output">
+              <Tool x:Name="ErrorList" Id="ErrorList" Title="Error List" x:DataType="Tool">
+                <TextBlock Text="{Binding Title}"/>
+              </Tool>
+              <Tool x:Name="Output" Id="Output" Title="Output" x:DataType="Tool">
+                <TextBlock Text="{Binding Title}"/>
+              </Tool>
+            </ToolDock>
+
+          </ProportionalDock>
+
+        </ProportionalDock>
+      </RootDock>
+
+    </DockControl>
+
+  </Grid>
+	
+	
+	
 </UserControl>

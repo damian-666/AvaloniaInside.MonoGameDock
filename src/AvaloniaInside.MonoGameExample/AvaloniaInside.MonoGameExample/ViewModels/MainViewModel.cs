@@ -1,11 +1,29 @@
 ﻿using Avalonia.Controls.Converters;
+using AvaloniaInside.MonoGameExample.Views;
 using Microsoft.Xna.Framework;
 
 namespace AvaloniaInside.MonoGameExample.ViewModels;
 
 public class MainViewModel : ViewModelBase
 {
-	public TestGame1 CurrentGame { get; set; } = new TestGame1();
+	public MainViewModel()
+	{
+		Factory = new DockFactory(this);
+		
+		Game1 = new TestGame1();
+		Game2 = new AutoPongGame();
+		CurrentGame = Game1;
+	}
+
+	public DockFactory Factory { get; }
+	
+	public TestGame1 CurrentGame { get; set; }
+
+	public TestGame1 Game1 { get; set; }
+
+	public AutoPongGame Game2 { get; set; } 
+
+	public TestGame1? Game3 { get; set; }
 
 	public Avalonia.Media.Color DiffuseColor
 	{
