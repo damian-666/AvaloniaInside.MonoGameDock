@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 
 namespace MGCore
@@ -41,11 +42,11 @@ namespace MGCore
 
             _graphicsManager=new GraphicsDeviceManager(this)
             {
-                //   PreferredBackBufferWidth = width,
-                //     PreferredBackBufferHeight = height,
-                //      IsFullScreen = isFullScreen,   // dont so tis  use the transform and scale
-              //  PreferMultiSampling=true,  //donest work on android
-                SynchronizeWithVerticalRetrace=true  // use producer consumer.. run bk thread to run physics or whtever, copy viewable data to some kind of display list, draw the last good frame for multithreading..  to avoid locks or wait or semaphores in the draw method, cant generate a view while reading it..
+             //    PreferredBackBufferWidth = 1800,
+             //       PreferredBackBufferHeight = 1200,
+             //   //      IsFullScreen = isFullScreen,   // dont so tis  use the transform and scale
+             // //  PreferMultiSampling=true,  //donest work on android
+             ////   SynchronizeWithVerticalRetrace=true  // use producer consumer.. run bk thread to run physics or whtever, copy viewable data to some kind of display list, draw the last good frame for multithreading..  to avoid locks or wait or semaphores in the draw method, cant generate a view while reading it..
             };
 
             _graphicsManager.GraphicsProfile=GraphicsProfile.HiDef;

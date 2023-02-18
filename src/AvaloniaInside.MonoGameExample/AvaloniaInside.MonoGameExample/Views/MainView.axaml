@@ -5,7 +5,7 @@
              xmlns:views="clr-namespace:AvaloniaInside.MonoGameExample.Views"
              xmlns:viewModels="clr-namespace:AvaloniaInside.MonoGameExample.ViewModels"
              xmlns:monoGame="clr-namespace:AvaloniaInside.MonoGame;assembly=AvaloniaInside.MonoGame"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="1800" d:DesignHeight="1200"
              x:Class="AvaloniaInside.MonoGameExample.Views.MainView"
              Foreground="White"
              Background="#171C2C">
@@ -15,24 +15,8 @@
 		<viewModels:MainViewModel />
 	</Design.DataContext>
 
-  <!--
-	<Grid ColumnDefinitions="*, 200">
-		<monoGame:MonoGameControl Game="{Binding CurrentGame}" />
-		<StackPanel Grid.Column="1" Orientation="Vertical">
-			<TextBlock Text="Diffuse Color"></TextBlock>
-			<ColorPicker Color="{Binding DiffuseColor}" ColorModel="Rgba" IsAlphaEnabled="False"></ColorPicker>
-
-			<TextBlock Text="Specular Color"></TextBlock>
-			<ColorPicker Color="{Binding SpecularColor}" ColorModel="Rgba" IsAlphaEnabled="False"></ColorPicker>
-
-			<TextBlock Text="Ambient Light Color"></TextBlock>
-			<ColorPicker Color="{Binding AmbientLightColor}" ColorModel="Rgba" IsAlphaEnabled="False"></ColorPicker>
-
-			<TextBlock Text="Emissive Color"></TextBlock>
-			<ColorPicker Color="{Binding EmissiveColor}" ColorModel="Rgba" IsAlphaEnabled="False"></ColorPicker>
-		</StackPanel>
-	</Grid>
-	-->
+  
+	
 
   <Grid  RowDefinitions="Auto,*">
 
@@ -45,7 +29,7 @@
         <MenuItem x:Name="FileCloseLayout" Header="_Close layout" Click="FileCloseLayout_OnClick" />
       </MenuItem>
     </Menu>
-
+   
     <DockControl x:Name="Dock" 
                  InitializeLayout="True" 
                  InitializeFactory="True"
@@ -54,19 +38,16 @@
       <!--<DockControl.Factory>
         <Factory />
       </DockControl.Factory>-->
+           <RootDock  x:Name="Root" Id="Root" IsCollapsable="False" DefaultDockable="{Binding #MainLayout}">
 
-      <RootDock x:Name="Root" Id="Root" IsCollapsable="False" DefaultDockable="{Binding #MainLayout}">
+			   <ProportionalDock x:Name="MainLayout" Id="MainLayout" Orientation="Horizontal">
 
-        <ProportionalDock x:Name="MainLayout" Id="MainLayout" Orientation="Horizontal">
 
-          <!-- Left Pane -->
 
-          <ToolDock x:Name="LeftPane" Id="LeftPane" Proportion="0.25" Alignment="Left">
+				   <ToolDock x:Name="LeftPane" Id="LeftPane" Proportion="0.25" Alignment="Left">
             <Tool x:Name="SolutionExplorer" Id="SolutionExplorer" Title="Solution Explorer" x:DataType="Tool">
 				<TreeView>
-
-
-					<TreeViewItem Header="Ent1" >
+			<TreeViewItem Header="Ent1" >
 						ball    
 					</TreeViewItem>
 					<TreeViewItem Header=" Ent2">
@@ -100,7 +81,7 @@
                       <TextBox Text="{Binding Context}"/>
                     </StackPanel>
                     -->
-                    <monoGame:MonoGameControl Game="{Binding  Context}"/>
+                 
                   </DocumentTemplate>
                 </DocumentDock.DocumentTemplate>
                 <Document x:Name="Document1" Id="Document1" Title="TestGame1" x:DataType="Document">
@@ -121,7 +102,8 @@
                 <Tool x:Name="Properties" Id="Properties" Title="Properties" x:DataType="Tool">
                   <!--<TextBlock Text="{Binding Title}"/>-->
                   <StackPanel DataContext="{Binding Context}" Orientation="Vertical">
-                    <TextBlock Text="Diffuse Color"></TextBlock>
+		
+                    <!--<TextBlock Text="Diffuse Color"></TextBlock>
                     <ColorPicker Color="{Binding DiffuseColor}" ColorModel="Rgba" IsAlphaEnabled="False"></ColorPicker>
 
                     <TextBlock Text="Specular Color"></TextBlock>
@@ -131,7 +113,7 @@
                     <ColorPicker Color="{Binding AmbientLightColor}" ColorModel="Rgba" IsAlphaEnabled="False"></ColorPicker>
 
                     <TextBlock Text="Emissive Color"></TextBlock>
-                    <ColorPicker Color="{Binding EmissiveColor}" ColorModel="Rgba" IsAlphaEnabled="False"></ColorPicker>
+                    <ColorPicker Color="{Binding EmissiveColor}" ColorModel="Rgba" IsAlphaEnabled="False"></ColorPicker>-->
                   </StackPanel>
                 </Tool>
               </ToolDock>
@@ -152,11 +134,11 @@
             </ToolDock>
 
           </ProportionalDock>
-
-        </ProportionalDock>
-      </RootDock>
-
+			   </ProportionalDock>
+    
+  </RootDock>
     </DockControl>
+	
 
   </Grid>
 	

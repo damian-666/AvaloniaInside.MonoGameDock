@@ -76,7 +76,7 @@ namespace AvaloniaInside.MonoGame;
             _screenResolution.X = _device.Viewport.Width;
             _screenResolution.Y = _device.Viewport.Height;
 
-            _method = ResizeMethod.Stretch;
+            _method = ResizeMethod.Fill;
 
             _batch = new SpriteBatch(_device);
 

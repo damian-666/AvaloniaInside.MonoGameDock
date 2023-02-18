@@ -25,8 +25,7 @@ public class DockFactory : Factory
         ContextLocator = new Dictionary<string, Func<object?>>
         {
             ["Document1"] = () => _mainViewModel.Game1,
-            ["Document2"] = () => _mainViewModel.Game2,
-            ["Document3"] = () => _mainViewModel.Game3,
+ 
             ["Properties"] = () => _mainViewModel,
         };
 
@@ -65,13 +64,13 @@ public class DockFactory : Factory
             return null;
         }
 
-        _mainViewModel.Game3 = new TestGame1();
-        _mainViewModel.CurrentGame = _mainViewModel.Game3;
+        _mainViewModel.Game1 = new TestGame1();
+        _mainViewModel.CurrentGame=_mainViewModel.Game1;
 
         var document = new Document
         {
-            Id = "Document3",
-            Title = "Game3",
+            Id = "Document1",
+            Title = "Game",
             Content = DocumentsPane.DocumentTemplate.Content
         };
 

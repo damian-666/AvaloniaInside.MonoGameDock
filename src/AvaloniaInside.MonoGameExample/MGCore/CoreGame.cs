@@ -1,4 +1,4 @@
-﻿#define RENDERTARGETTEST
+﻿//#define RENDERTARGETTEST
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -28,13 +28,27 @@ namespace MGCore
             Instance=this;
         }
 
+        private bool useEffect = false;
+
+
+
+        /// <summary>
+        /// Toggles the use of custom shader(s)
+        /// </summary>
+        public bool UseEffect { get => useEffect; set => useEffect=value; }
 
         static public bool IsDirectX = false;
 
 
 
         protected override void Initialize()
-        {
+        {        
+            
+            
+            Window.Title="MG Cross Platform Shaders "+(IsDirectX ? "DirectX" : "OpenGL");
+
+
+            Window.AllowUserResizing=true;
             base.Initialize();
         }
 
@@ -43,7 +57,7 @@ namespace MGCore
 
 
 
-        SpriteBatch spriteBatch;
+
 
 
         Texture2D striteClipMask;
@@ -55,33 +69,41 @@ namespace MGCore
 
 
             //we always have a Device by here
-            GraphicsDevice.PresentationParameters.MultiSampleCount           // set to windows limit, if gpu doesn't support it, monogame will autom. scale it down to the next supported level
-            =GraphicsDeviceManager.PreferMultiSampling ? MsaaSampleLimit : 0;
+            GraphicsDevice.PresentationParameters.MultiSampleCount=0;     // set to windows limit, if gpu doesn't support it, monogame will autom. scale it down to the next supported level
+                                                                          //    =GraphicsDeviceManager.PreferMultiSampling ? MsaaSampleLimit : 0;
 
 
             //TODo consder mg 3.8.1 fixes to windowing.. some are unmerged and recent..
 
-            
-            Window.Title="MG Cross Platform Shaders "+(IsDirectX ? "DirectX" : "OpenGL");
 
 
-            Window.AllowUserResizing=true;
 
 #if RENDERTARGETTEST
             Window.Title+=" Render Target";
             
-            clip=Content.Load<Effect>("ClipShader");
+       //     clip=Content.Load<Effect>("ClipShader");
+             clip=Content.Load<Effect>("ClipShaderNew");
 
             striteClipMask=Content.Load<Texture2D>("surgeclip");
 #else
             Window.Title += " Sprite Test";
+            clip=Content.Load<Effect>("ClipShaderNew");
+
+            striteClipMask=Content.Load<Texture2D>("surgeclip"); 
+
+            clip.Parameters["Mask"].SetValue(striteClipMask);
+            
 #endif
 
-            spriteBatch =new SpriteBatch(GraphicsDevice);
+            _spriteBatch =new SpriteBatch(GraphicsDevice);
+
+
+
+
 
 
             //       shader = Content.Load<Effect>("Invert");
-
+            
             spritetoClip=Content.Load<Texture2D>("surge");
 
      
@@ -130,45 +152,46 @@ namespace MGCore
 
             }
 
-            UInt32[] color = new UInt32[spritetoClip.Width*spritetoClip.Height];
-            clippedTex.GetData<UInt32>(color);
-
-            //    GraphicsDevice.Clear(Color.Transparent);
-
-
+     
+    
             BasicEffect var = new BasicEffect(GraphicsDevice);
        
 
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null);
+            _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null);
 
 
             Rectangle rct = GraphicsDevice.Viewport.Bounds;
          
-            spriteBatch.Draw(clippedTex,   rct, null,  Color.White);
+            _spriteBatch.Draw(clippedTex,   rct, null,  Color.White);
             //no because we really wann just draw whats in the mask , it will skip alpha so it wond work the other way...   
             //sending blend mode sourcealpha might work but this is fine
-            spriteBatch.End();
+            _spriteBatch.End();
 
 
 #else
-            GraphicsDevice.Clear(Color.BlueViolet);
-       //     clip.Parameters[0].SetValue(catClipMask);
-       ////       clip.Parameters[1].SetValue(spriteCat); ;
+            GraphicsDevice.Clear(Color.Yellow);
 
-             //   spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,null);
-//
-          //    spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, clip);
-               
-          //    spriteBatch.Draw(catClipMask, new Vector2(100,100), Color.White); ;
 
-             spriteBatch.Draw(spritetoClip, Vector2.Zero, Color.White);
+      //          BasicEffect var = new BasicEffect(GraphicsDevice);
+       
+
+            //     clip.Parameters[0].SetValue(catClipMask);
+            ////       clip.Parameters[1].SetValue(spriteCat); ;
+
+            //   spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,null);
+            //
+               _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, effect:clip);
+
+            //    spriteBatch.Draw(catClipMask, new Vector2(100,100), Color.White); ;
+            Rectangle rct = GraphicsDevice.Viewport.Bounds;
+            _spriteBatch.Draw(spritetoClip,   rct,null,  Color.White);
            //no because we really wann just draw whats in the mask , it will skip alpha so it wond work the other way...   
            //sending blend mode sourcealpha might work but this is fine
-               spriteBatch.End();
+               _spriteBatch.End();
 
 #endif
 
-        
+
         }
 
 

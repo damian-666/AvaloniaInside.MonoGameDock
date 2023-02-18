@@ -40,13 +40,14 @@ namespace MGCore
             gr.Clear(Color.Transparent);  //this is needed if we discard contents which seems like the simplest way..
 
 
-            clip.Parameters[0].SetValue(mask);
-            clip.Parameters[1].SetValue(tex); ;
+            clip.Parameters["Mask"].SetValue(mask);
+            //    clip.Parameters[0].SetValue(mask);
+            //    clip.Parameters[1].SetValue(tex); ;
 
             //   spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,null);
             //
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, null, null, null, clip);
-            spriteBatch.Draw(mask, Vector2.Zero, Color.Transparent); ;
+            spriteBatch.Draw(tex, Vector2.Zero, Color.Transparent); ;
 
             //    spriteBatch.Draw(tex, Vector2.Zero, Color.White);
             //no because we really wann just draw whats in the mask , it will skip alpha so it wont work the other way...   
