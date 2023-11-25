@@ -1,0 +1,22 @@
+first build and run on winodows
+
+make sure you cna touch clipshdernew and surce.
+
+rightnow im not usre if the TestGame code is doing the draw or the MgCore
+
+
+
+Content should build and wokr also.. you load this usually on the content 
+
+
+
+try release build as any cpu and wihtout AOL..  at least see if i might work on mac or linux
+
+now its using winodw and gl.
+
+
+later we try wiodows and dx?   
+
+not sur if direct x and avalonia can work at all.. doubt it.  but the audio engine can be linked teh the same gamecore
+and run in wondws sepearteate linked to  a net7 windows.exe
+

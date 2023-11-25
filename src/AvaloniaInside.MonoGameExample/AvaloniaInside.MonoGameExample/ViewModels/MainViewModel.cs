@@ -10,8 +10,7 @@ public class MainViewModel : ViewModelBase
 	{
 		Factory = new DockFactory(this);
 		
-		Game1 = new TestGame1();
-		Game2 = new AutoPongGame();
+	Game1 = new TestGame1();
 		CurrentGame = Game1;
 	}
 
@@ -21,27 +20,25 @@ public class MainViewModel : ViewModelBase
 
 	public TestGame1 Game1 { get; set; }
 
-	public AutoPongGame Game2 { get; set; } 
+	
 
-	public TestGame1? Game3 { get; set; }
-
-	public Avalonia.Media.Color DiffuseColor
-	{
-		get => ToColor(CurrentGame.DiffuseColor);
-		set => CurrentGame.DiffuseColor = ToVector3(value);
-	}
-	public Avalonia.Media.Color SpecularColor {
-		get => ToColor(CurrentGame.SpecularColor);
-		set => CurrentGame.SpecularColor = ToVector3(value);
-	}
-	public Avalonia.Media.Color AmbientLightColor {
-		get => ToColor(CurrentGame.AmbientLightColor);
-		set => CurrentGame.AmbientLightColor = ToVector3(value);
-	}
-	public Avalonia.Media.Color EmissiveColor {
-		get => ToColor(CurrentGame.EmissiveColor);
-		set => CurrentGame.EmissiveColor = ToVector3(value);
-	}
+	//public Avalonia
+	//{
+	//	get => ToColor(CurrentGame.DiffuseColor);
+	//	set => CurrentGame.DiffuseColor = ToVector3(value);
+	//}
+	//public Avalonia.Media.Color SpecularColor {
+	//	get => ToColor(CurrentGame.SpecularColor);
+	//	set => CurrentGame.SpecularColor = ToVector3(value);
+	//}
+	//public Avalonia.Media.Color AmbientLightColor {
+	//	get => ToColor(CurrentGame.AmbientLightColor);
+	//	set => CurrentGame.AmbientLightColor = ToVector3(value);
+	//}
+	//public Avalonia.Media.Color EmissiveColor {
+	//	get => ToColor(CurrentGame.EmissiveColor);
+	//	set => CurrentGame.EmissiveColor = ToVector3(value);
+	//}
 
 	private static Avalonia.Media.Color ToColor(Vector3 v) =>
 		new(byte.MaxValue, (byte)(v.X * byte.MaxValue), (byte)(v.Y * byte.MaxValue), (byte)(v.Z * byte.MaxValue));

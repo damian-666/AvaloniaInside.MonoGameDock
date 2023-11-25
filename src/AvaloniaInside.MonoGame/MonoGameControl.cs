@@ -38,7 +38,7 @@ public sealed class MonoGameControl : Control
 	{
 		BackBufferWidth = 1,
 		BackBufferHeight = 1,
-		BackBufferFormat = SurfaceFormat.Color,
+		BackBufferFormat = SurfaceFormat.Bgr32SRgb,
 		DepthStencilFormat = DepthFormat.Depth24,
 		PresentationInterval = PresentInterval.Immediate,
 		IsFullScreen = false
@@ -158,7 +158,7 @@ public sealed class MonoGameControl : Control
 		var newHeight = Math.Max(1, (int)Math.Ceiling(newSize.Height));
 
 		device.Viewport = new Viewport(0, 0, newWidth, newHeight);
-		_presentationParameters.BackBufferWidth = newWidth;
+	_presentationParameters.BackBufferWidth = newWidth;
 		_presentationParameters.BackBufferHeight = newHeight;
 		device.Reset(_presentationParameters);
 
@@ -196,8 +196,8 @@ public sealed class MonoGameControl : Control
 		var size = bitmapLock.RowBytes * bitmapLock.Size.Height;
 		if (_bufferData.Length < size)
 		{
-			//_bufferData = new byte[size];
-			Array.Resize(ref _bufferData, size);
+			_bufferData = new byte[size];
+		//	Array.Resize(ref _bufferData, size);
 		}
 
 		device.GetBackBufferData(_bufferData, 0, size);

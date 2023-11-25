@@ -3,6 +3,7 @@
         <TargetFramework>net7.0</TargetFramework>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
+        <Platforms>AnyCPU;x64</Platforms>
     </PropertyGroup>
 
     <ItemGroup>
@@ -17,18 +18,13 @@
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
         <PackageReference Include="XamlNameReferenceGenerator" Version="1.5.1" />
-        <PackageReference Include="Dock.Avalonia" Version="11.0.999-build20230104-01" />
-        <PackageReference Include="Dock.Serializer" Version="11.0.999-build20230104-01" />
-        <PackageReference Include="Dock.Model.Avalonia" Version="11.0.999-build20230104-01" />
+        <PackageReference Include="Dock.Avalonia" Version="11.0.0-preview5" />
+        <PackageReference Include="Dock.Serializer" Version="11.0.0-preview5" />
+        <PackageReference Include="Dock.Model.Avalonia" Version="11.0.0-preview5" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\AvaloniaInside.MonoGame\AvaloniaInside.MonoGame.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Update="Content\**">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
+      <ProjectReference Include="..\MGCore\MGCore.csproj" />
     </ItemGroup>
 </Project>
